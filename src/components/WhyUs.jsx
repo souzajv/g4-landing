@@ -37,7 +37,10 @@ const items = [
 ];
 
 const STICKY_TOP = "top-[14vh]";
-const STACK_HEIGHT = "h-[64vh] md:h-[62vh] lg:h-[80vh]";
+// altura MÍNIMA, não fixa: o empilhamento sticky precisa de cards com altura
+// parecida, mas se o texto crescer (escala de fonte do sistema, tradução mais
+// longa) o card acompanha em vez de cortar o conteúdo no overflow-hidden
+const STACK_HEIGHT = "min-h-[64vh] md:min-h-[62vh] lg:min-h-[80vh]";
 
 // fixed brand accent — same order as the logo: blue first, orange second, on every card
 const ACCENT = { chipBg: "bg-brand-blue-light/10", chipHover: "group-hover:bg-brand-blue-light", icon: "text-brand-blue-light", n: "text-brand-orange" };
@@ -207,7 +210,7 @@ export default function WhyUs() {
           <RouteTrack />
           {items.map((item, i) => {
             const card = (
-              <div className="group border-t-10 border-brand-blue-tint h-full grid grid-cols-1 lg:grid-cols-[1fr_1.05fr] rounded-xl bg-brand-offwhite shadow-xl shadow-black/5 overflow-hidden transition-transform duration-300 hover:border-brand-blue-light hover:-translate-y-1">
+              <div className="group border-t-10 border-brand-blue-tint w-full grid grid-cols-1 lg:grid-cols-[1fr_1.05fr] rounded-xl bg-brand-offwhite shadow-xl shadow-black/5 overflow-hidden transition-transform duration-300 hover:border-brand-blue-light hover:-translate-y-1">
                 <div className="flex flex-col justify-between p-8 md:p-10">
                   <div>
                     <div className="flex items-center gap-4 mb-8">
@@ -227,11 +230,13 @@ export default function WhyUs() {
                   </div>
                 </div>
 
-                <div className="relative hidden lg:block h-full">
+                <div className="relative hidden lg:block">
+                  {/* absoluta para a proporção da foto nunca ditar a altura
+                      do card — ela só preenche o espaço que o texto definir */}
                   <img
                     src={item.image}
                     alt={item.imageAlt}
-                    className="w-full h-full object-cover"
+                    className="absolute inset-0 w-full h-full object-cover"
                     loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-brand-navy-deep/50 via-transparent to-transparent" />
@@ -242,13 +247,13 @@ export default function WhyUs() {
             return (
               <div
                 key={item.n}
-                className={`sticky  ${STICKY_TOP} ${STACK_HEIGHT}`}
+                className={`sticky flex ${STICKY_TOP} ${STACK_HEIGHT}`}
                 style={{ zIndex: i + 1 }}
               >
                 {i === 0 ? (
-                  <Reveal className="h-full">{card}</Reveal>
+                  <Reveal className="w-full flex">{card}</Reveal>
                 ) : (
-                  <div className="h-full">{card}</div>
+                  <div className="w-full flex">{card}</div>
                 )}
               </div>
             );

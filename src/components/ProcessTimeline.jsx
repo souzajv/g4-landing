@@ -174,9 +174,10 @@ export default function ProcessTimeline() {
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-brand-blue-light leading-[0.95] mb-10">
             Como funciona a<span className="text-brand-orange"> operação?</span>
           </h2>
-          <p className="text-sm md:text-base text-black/60 shadow-md leading-relaxed mb-24 max-w-xl bg-brand-blue-tint p-4 rounded-md border-l-8 border-brand-blue-light">
+          <p className="text-sm md:text-base text-black/60 shadow-md leading-relaxed mb-24 max-w-xl bg-brand-blue-tint p-4 pr-8 rounded-md border-l-8 border-brand-blue-light relative">
             Simplificando a logística por meio da integração entre
             processos, tecnologia e um <strong>atendimento pensado para cada cliente</strong>.
+            <TruckSolid size={24} className="text-brand-orange absolute top-3 right-3 drop-shadow-[0_1px_3px_rgba(255,130,25,0.35)]" />
           </p>
         </Reveal>
 
@@ -208,16 +209,14 @@ export default function ProcessTimeline() {
                 <Reveal key={s.n} delay={i * 0.1}>
                   <div className="flex flex-row md:flex-col items-start gap-5 md:gap-0">
                     <div
-                      className={`w-14 h-14 md:w-[115px] md:h-[115px] flex items-center justify-center shrink-0 relative z-10 mb-0 md:mb-8 rounded-full transition-colors duration-[625ms] ${
-                        isActive ? "bg-brand-orange shadow-lg shadow-orange-900/20" : "bg-brand-blue-tint"
-                      }`}
+                      className={`w-14 h-14 md:w-[115px] md:h-[115px] flex items-center justify-center shrink-0 relative z-10 mb-0 md:mb-8 rounded-full transition-colors duration-[625ms] ${isActive ? "bg-brand-orange shadow-lg shadow-orange-900/20" : "bg-brand-blue-tint"
+                        }`}
                     >
                       <s.icon className={`w-6 h-6 md:w-12 md:h-12 ${isActive ? "text-white" : "text-brand-blue-light"}`} />
                     </div>
                     <div
-                      className={`pt-2 md:pt-0 transition-all duration-[875ms] ease-out ${
-                        isActive ? "blur-0 opacity-100" : "blur-[6px] opacity-40"
-                      }`}
+                      className={`pt-2 md:pt-0 transition-all duration-[875ms] ease-out ${isActive ? "blur-0 opacity-100" : "blur-[6px] opacity-40"
+                        }`}
                     >
                       <h4 className="text-lg font-semibold tracking-tight text-brand-navy mb-2">{s.title}</h4>
                       <p className="text-sm text-neutral-500 leading-relaxed">{s.desc}</p>
