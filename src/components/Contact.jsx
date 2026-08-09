@@ -126,7 +126,7 @@ export default function Contact() {
                             Cotação sem compromisso
                           </p>
                           <h3 className="mt-1 font-display text-2xl sm:text-3xl font-semibold tracking-tight text-brand-navy">
-                            Peça sua cotação
+                            Solicite sua cotação
                           </h3>
                         </div>
                         <div className="h-9 w-9 shrink-0 rounded-lg bg-brand-orange text-white flex items-center justify-center">

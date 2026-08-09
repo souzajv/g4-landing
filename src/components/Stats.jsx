@@ -32,7 +32,7 @@ export default function Stats() {
                   >
                     <Counter to={s.to} suffix={s.suffix} />
                   </span>
-                  <span className="text-xs md:text-sm block max-w-48 tracking-widest uppercase text-white/65 font-bold">
+                  <span className="text-xs md:text-sm block max-w-48 tracking-widest uppercase text-white/65 font-medium">
                     {s.label}
                   </span>
                 </div>

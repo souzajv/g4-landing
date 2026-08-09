@@ -27,5 +27,11 @@
     "postcss": "^8.5.17",
     "tailwindcss": "^4.3.2",
     "vite": "^8.1.1"
-  }
+  },
+  "browserslist": [
+    "> 0.5%",
+    "last 2 versions",
+    "iOS >= 14",
+    "not dead"
+  ]
 }
