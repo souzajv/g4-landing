@@ -69,7 +69,7 @@ export default function FlightRoute({ className = "" }) {
 
         {/* destination blotch — blue, like a state silhouette around the arrival point */}
         <g transform={`translate(${DESTINATION.x}, ${DESTINATION.y})`}>
-          <path d={DESTINATION_BLOB} fill="#0505FF" fillOpacity="0.16" />
+          <path d={DESTINATION_BLOB} fill="#2575fc" fillOpacity="0.16" />
         </g>
 
         {/* invisible guide path (drives the plane's motion) */}
@@ -79,7 +79,7 @@ export default function FlightRoute({ className = "" }) {
         <path
           d={ROUTE_D}
           fill="none"
-          stroke="#0505FF"
+          stroke="#2575fc"
           strokeOpacity="0.35"
           strokeWidth="4"
           strokeLinecap="round"
@@ -88,8 +88,8 @@ export default function FlightRoute({ className = "" }) {
 
         {/* origin marker */}
         <g>
-          <circle cx={ORIGIN.x} cy={ORIGIN.y} r="16" fill="#0505FF" fillOpacity="0.15" />
-          <circle cx={ORIGIN.x} cy={ORIGIN.y} r="8" fill="#0505FF" stroke="white" strokeWidth="3" />
+          <circle cx={ORIGIN.x} cy={ORIGIN.y} r="16" fill="#2575fc" fillOpacity="0.15" />
+          <circle cx={ORIGIN.x} cy={ORIGIN.y} r="8" fill="#2575fc" stroke="white" strokeWidth="3" />
         </g>
 
         {/* destination pin — scaled down, tip aligned exactly to the route's end point */}

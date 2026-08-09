@@ -2,13 +2,74 @@
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="G4 Express — Soluções logísticas integradas com agilidade, segurança e rastreabilidade em todo o Brasil desde 2010." />
-    <title>G4 Express | Rápido de Verdade</title>
+    <meta name="description" content="Transportadora com frota própria e monitoramento 24h. Transporte rodoviário, aéreo, distribuição, logística reversa e entregas emergenciais em todo o Brasil desde 2010." />
+    <meta name="theme-color" content="#0a1050" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <title>G4 Express | Transporte e Logística em Todo o Brasil</title>
+    <link rel="canonical" href="https://www.g4express.com.br/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content="G4 Express" />
+    <meta property="og:title" content="G4 Express | Transporte e Logística em Todo o Brasil" />
+    <meta property="og:description" content="Transportadora com frota própria e monitoramento 24h, atendendo todo o Brasil desde 2010." />
+    <meta property="og:url" content="https://www.g4express.com.br/" />
+    <meta property="og:image" content="https://www.g4express.com.br/images/hero-poster.webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="G4 Express | Transporte e Logística em Todo o Brasil" />
+    <meta name="twitter:description" content="Transportadora com frota própria e monitoramento 24h, atendendo todo o Brasil desde 2010." />
+    <meta name="twitter:image" content="https://www.g4express.com.br/images/hero-poster.webp" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "MovingCompany",
+        "name": "G4 Express",
+        "url": "https://www.g4express.com.br/",
+        "logo": "https://www.g4express.com.br/logo-g4-express.webp",
+        "image": "https://www.g4express.com.br/images/hero-poster.webp",
+        "description": "Transportadora com frota própria e monitoramento 24h. Transporte rodoviário, aéreo, distribuição, logística reversa e entregas emergenciais em todo o Brasil.",
+        "foundingDate": "2010",
+        "telephone": "+55-11-3432-4744",
+        "email": "G4@g4express.com.br",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "R. Xavier da Silva Ferrão, 219 — Freguesia do Ó",
+          "addressLocality": "São Paulo",
+          "addressRegion": "SP",
+          "postalCode": "02808-000",
+          "addressCountry": "BR"
+        },
+        "areaServed": { "@type": "Country", "name": "Brasil" }
+      }
+    </script>
+
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <!-- imagem de fundo da hero: é o LCP, então busca junto com o HTML -->
+    <link rel="preload" as="image" href="/images/hero-poster.webp" fetchpriority="high" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet" />
+    <!-- fontes fora do caminho crítico de render: baixam em paralelo e são
+         aplicadas ao carregar, em vez de bloquear a primeira pintura -->
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@600;700&display=swap"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@600;700&display=swap"
+      />
+    </noscript>
   </head>
   <body>
     <div id="root"></div>

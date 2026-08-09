@@ -5,17 +5,38 @@
   --font-display: "Oswald", ui-sans-serif, system-ui, sans-serif;
 
   --color-brand-blue: #0505ff;
-  --color-brand-blue-light: #2575fc;
+  --color-brand-blue-light: #2248c5;
   --color-brand-navy: #001233;
-  --color-brand-navy-deep: #000a1f;
+  --color-brand-navy-deep: #0a1050;
   --color-brand-orange: #ff8219;
   --color-brand-orange-light: #ffa64d;
+  --color-brand-orange-dark: #cc6814;
   --color-brand-offwhite: #f9f9f9;
   --color-brand-ink: #14161f;
+  --color-brand-blue-tint: #eaecff;
 }
 
-html {
-  scroll-behavior: smooth;
+/* Lenis smooth scroll — recommended baseline so the JS-driven scroll never
+   fights with native CSS smooth scrolling or nested scroll containers. */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
 }
 
 body {
@@ -34,6 +55,37 @@ body {
   color: white;
 }
 
+/* brand scrollbar — navy track with an orange thumb that darkens on hover */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-brand-orange) var(--color-brand-navy);
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--color-brand-navy);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-brand-orange);
+  border: 3px solid var(--color-brand-navy);
+  border-radius: 999px;
+  transition: background-color 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover,
+::-webkit-scrollbar-thumb:active {
+  background-color: var(--color-brand-orange-dark);
+}
+
+::-webkit-scrollbar-corner {
+  background-color: var(--color-brand-navy);
+}
+
 @keyframes marquee {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
@@ -45,4 +97,30 @@ body {
 
 .animate-marquee:hover {
   animation-play-state: paused;
+}
+
+/* fator de escala dos logos da marquee: os tamanhos vêm em px no componente
+   e são multiplicados por --ls, que encolhe tudo proporcionalmente no mobile */
+.logo-slot {
+  --ls: 0.78;
+}
+
+@media (min-width: 768px) {
+  .logo-slot {
+    --ls: 1;
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes radar-spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
 }
