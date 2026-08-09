@@ -174,7 +174,7 @@ export default function ProcessTimeline() {
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-brand-blue-light leading-[0.95] mb-10">
             Como funciona a<span className="text-brand-orange"> operação?</span>
           </h2>
-          <p className="text-sm md:text-base text-black/60 shadow-md leading-relaxed mb-24 max-w-xl bg-brand-blue-tint p-4 pr-8 rounded-md border-l-8 border-brand-blue-light relative">
+          <p className="text-sm md:text-base text-black/60 shadow-md leading-relaxed mb-24 max-w-xl bg-brand-blue-tint p-4 pr-9 rounded-md border-l-8 border-brand-blue-light relative">
             Simplificando a logística por meio da integração entre
             processos, tecnologia e um <strong>atendimento pensado para cada cliente</strong>.
             <TruckSolid size={24} className="text-brand-orange absolute top-3 right-3 drop-shadow-[0_1px_3px_rgba(255,130,25,0.35)]" />

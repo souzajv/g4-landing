@@ -196,7 +196,7 @@ export default function WhyUs() {
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-brand-blue-light leading-[0.95] mb-10 md:mb-0">
             Por que <span className="text-brand-orange">nós?</span>
           </h2>
-          <p className="text-sm md:text-base shadow-md text-black/60 leading-relaxed pr-8 max-w-xl bg-brand-blue-tint p-4 rounded-md border-l-8 border-brand-blue-light relative">
+          <p className="text-sm md:text-base shadow-md text-black/60 leading-relaxed pr-9 max-w-xl bg-brand-blue-tint p-4 rounded-md border-l-8 border-brand-blue-light relative">
             Construímos uma reputação com base em resultado, menos imprevistos,
             mais controle e um atendimento que trata cada cliente como
             <strong> parceiro de longo prazo</strong>, não apenas mais uma entrega na rota.
