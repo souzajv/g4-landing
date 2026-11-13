@@ -42,7 +42,7 @@ export default function Navbar() {
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? "bg-brand-navy-deep/40 backdrop-blur-sm shadow-lg" : "bg-transparent"
         } ${hidden ? "-translate-y-full" : "translate-y-0"}`}
     >
-      <div className="max-w-7xl mx-auto px-6 py-2 lg:px-10 flex justify-between items-center">
+      <div className="page-container py-2 flex justify-between items-center">
         <a href="#inicio" className="flex flex-col leading-none">
           <img src="/logo-g4-express.webp" alt="G4 Express" className="h-12 w-auto" />
         </a>

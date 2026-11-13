@@ -15,7 +15,6 @@ const ProcessTimeline = lazy(() => import("./components/ProcessTimeline"));
 const Stats = lazy(() => import("./components/Stats"));
 const WhyUs = lazy(() => import("./components/WhyUs"));
 const Solutions = lazy(() => import("./components/Solutions"));
-const ClientsMarquee = lazy(() => import("./components/ClientsMarquee"));
 const Contact = lazy(() => import("./components/Contact"));
 const Footer = lazy(() => import("./components/Footer"));
 
@@ -26,7 +25,6 @@ const prefetch = () => {
   import("./components/Stats");
   import("./components/WhyUs");
   import("./components/Solutions");
-  import("./components/ClientsMarquee");
   import("./components/Contact");
   import("./components/Footer");
 };
@@ -59,7 +57,6 @@ export default function App() {
         <Stats />
         <WhyUs />
         <Solutions />
-        <ClientsMarquee />
         <Contact />
         <Footer />
       </Suspense>

@@ -13,13 +13,31 @@
 // Swapping providers later (Formspree, EmailJS, own endpoint) only requires
 // changing ENDPOINT and the payload shape below — nothing in Contact.jsx.
 
+import { QUOTE_SERVICES } from "./quote.js";
+
 const ENDPOINT = "https://api.web3forms.com/submit";
-const ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_KEY;
+const ACCESS_KEY = import.meta.env?.VITE_WEB3FORMS_KEY;
+
+export function validateQuoteData(data) {
+  for (const field of ["nome", "email", "telefone", "origem", "destino", "pagador_frete"]) {
+    if (!String(data[field] || "").trim()) throw new Error("Preencha todos os campos obrigatórios.");
+  }
+  if (!QUOTE_SERVICES.includes(data.servico)) throw new Error("Selecione uma modalidade convencional.");
+  if (data.botcheck || !String(data["h-captcha-response"] || "").trim()) throw new Error("Conclua a verificação de segurança antes de enviar.");
+  for (const field of ["comprimento", "largura", "altura", "peso"]) {
+    const value = String(data[field] || "").trim();
+    if (value && (!Number.isFinite(Number(value.replace(",", "."))) || Number(value.replace(",", ".")) <= 0)) {
+      throw new Error("Informe medidas e peso maiores que zero, usando apenas números.");
+    }
+  }
+}
 
 export const isQuoteFormConfigured = Boolean(ACCESS_KEY);
 
-export async function sendQuote(formEl) {
+export async function sendQuote(formEl, captchaToken) {
   const data = Object.fromEntries(new FormData(formEl).entries());
+  if (captchaToken) data["h-captcha-response"] = captchaToken;
+  validateQuoteData(data);
 
   // no key yet: don't pretend it was delivered
   if (!ACCESS_KEY) {

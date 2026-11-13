@@ -20,7 +20,7 @@ export default function Stats() {
       <SectionWave soft position="top" color="var(--color-brand-blue-light)" />
       <SectionWave soft position="bottom" color="var(--color-brand-blue-light)" />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
+      <div className="page-container relative z-10">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-14">
           {stats.map((s, i) => (
             <Reveal key={s.label} delay={i * 0.1}>

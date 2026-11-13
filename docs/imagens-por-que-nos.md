@@ -1,0 +1,7 @@
+# Imagens da seção Por que nós?
+
+- **Excelência:** foto de atendimento em atividade, de MART PRODUCTION. Fonte: https://www.pexels.com/photo/man-wearing-black-headset-holding-a-paper-at-the-office-7709117/ . Licença: https://www.pexels.com/license/ . Arquivo servido: `public/images/atendimento-equipe.webp`, 1600 × 1067, WebP qualidade 90. Foto de banco de imagens, não retrata a equipe G4.
+- **Frota própria:** foto fornecida pelo cliente em `assets-originais/images/frota-posto.jpeg`. Arquivo servido: `public/images/frota-posto.jpg`, 1032 × 774. JPEG progressivo otimizado com libjpeg-turbo, sem redimensionamento ou nova quantização. Comparação dos pixels RGB decodificados confirmou igualdade exata. Original: 110.902 bytes; otimizado: 110.375 bytes. WebP sem perdas foi avaliado e descartado por aumentar o arquivo para 600.240 bytes. Original preservado.
+- **Monitoramento 24h:** imagem ilustrativa de acompanhamento de rotas já presente no projeto em `public/images/monitoramento-equipe.jpg`, mais alinhada ao rastreamento logístico que as fotos de CFTV encontradas na pesquisa. Arquivo servido: `public/images/monitoramento-rotas.webp`, 1536 × 1024, WebP qualidade 90. Não identificada como fotografia da central real da G4.
+
+As imagens utilizam carregamento tardio e decodificação assíncrona. O enquadramento é definido individualmente no componente; os arquivos originais não foram recortados.

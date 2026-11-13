@@ -6,7 +6,7 @@ export default function CoverageStatement() {
     <section className="relative pt-16 md:pt-40 pb-20 bg-brand-offwhite">
       <FlightRoute className="pointer-events-none" />
 
-      <div className="max-w-5xl mx-auto px-6 lg:px-10 relative z-10">
+      <div className="page-container relative z-10">
         <ScrollReveal
           baseOpacity={0.15}
           baseRotation={2}

@@ -7,7 +7,7 @@ export default function Hero() {
   return (
     <section id="inicio" className="relative min-h-screen flex items-end overflow-hidden bg-[#000a1f]">
       <HeroVideo
-        src="/hero.mp4"
+        src="/video/g4-na-estrada.mp4"
         poster="/images/hero-poster.webp"
         className="absolute inset-0 w-full h-full object-cover"
       />
@@ -16,7 +16,7 @@ export default function Hero() {
       <div className="absolute left-0 top-0 bottom-0 w-full md:w-3/5 bg-gradient-to-r from-[#000a1f]/75 via-[#000a1f]/25 to-transparent" />
       <div className="absolute right-0 top-0 bottom-0 w-full md:w-2/5 bg-gradient-to-l from-[#000a1f]/70 via-[#000a1f]/20 to-transparent" />
 
-      <div className="relative z-20 mx-auto grid w-full max-w-7xl gap-10 px-6 pt-32 pb-14 sm:px-8 lg:grid-cols-12 lg:px-10 lg:pb-20">
+      <div className="page-container relative z-20 grid gap-10 pt-32 pb-14 lg:grid-cols-12 lg:pb-20">
         <div className="lg:col-span-8">
          
 

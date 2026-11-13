@@ -16,6 +16,24 @@
   --color-brand-blue-tint: #eaecff;
 }
 
+.page-container {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: 16px;
+}
+
+@media (min-width: 640px) {
+  .page-container {
+    padding-inline: 24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .page-container {
+    padding-inline: 48px;
+  }
+}
+
 /* Lenis smooth scroll — recommended baseline so the JS-driven scroll never
    fights with native CSS smooth scrolling or nested scroll containers. */
 html.lenis,
@@ -73,7 +91,7 @@ html {
 ::-webkit-scrollbar-thumb {
   background-color: var(--color-brand-orange);
   border: 3px solid var(--color-brand-navy);
-  border-radius: 999px;
+  border-radius: var(--radius-md);
   transition: background-color 0.2s ease;
 }
 

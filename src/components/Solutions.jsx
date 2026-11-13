@@ -1,5 +1,6 @@
 import Reveal from "./Reveal";
-import { requestQuote } from "../lib/quote";
+import "./ProcessTimeline.css";
+import { requestQuote, conventionalService, serviceEmail } from "../lib/quote";
 import { Truck, Plane, RotateCcw, Boxes, Siren, ArrowUpRight } from "lucide-react";
 
 const solutions = [
@@ -7,50 +8,36 @@ const solutions = [
     icon: Truck,
     title: "Rodoviário",
     service: "Rodoviário",
-    desc: "Convencional, rodo expresso ou rodo exclusivo — porta a porta ou carga consolidada, em todo o território nacional.",
+    desc: "Transporte convencional, rodo expresso ou rodo exclusivo em todo o Brasil, com entregas porta a porta ou carga consolidada.",
     img: "/images/rodoviario.webp",
-    span: "sm:col-span-2 lg:col-span-2 lg:row-span-2",
-    // no min-height here: this tile spans 2 rows, so any minimum it declares
-    // gets pushed onto both rows and inflates the whole grid — it just grows
-    // into whatever height the other two rows end up with
-    imgClass: "h-56 md:h-64 lg:h-auto lg:flex-1",
-    hero: true,
   },
   {
     icon: Plane,
     title: "Aéreo",
     service: "Aéreo",
-    desc: "Convencional, 1º voo, expresso e portador — entregas rápidas em todos os aeroportos do Brasil.",
+    desc: "Transporte aéreo nas modalidades convencional, primeiro voo, expresso e portador, com atendimento em todos os aeroportos do Brasil.",
     img: "/images/aereo.webp",
-    span: "sm:col-span-2 lg:col-span-2",
-    imgClass: "h-48 lg:h-auto lg:flex-1 lg:min-h-[190px]",
   },
   {
     icon: RotateCcw,
     title: "Logística reversa",
     service: "Logística Reversa",
-    desc: "Armazenagem, embalagens, controle físico e administrativo, e fluxo reverso de produtos.",
+    desc: "Gestão do retorno de produtos, com armazenagem, embalagens e controle físico e administrativo em cada etapa do fluxo reverso.",
     img: "/images/logistica-reversa.webp",
-    span: "sm:col-span-1 lg:col-span-1",
-    imgClass: "h-44 lg:h-auto lg:flex-1 lg:min-h-[140px]",
   },
   {
     icon: Boxes,
-    title: "Distribuição",
-    service: "Distribuição",
-    desc: "Manuseio e entrega de materiais em nível nacional, com pontualidade, segurança e eficiência.",
+    title: "Manuseio, Movimentação e Distribuição",
+    service: "Manuseio, Movimentação e Distribuição",
+    desc: "Manuseio e entrega de materiais em todo o território nacional, com foco em pontualidade, segurança e eficiência na distribuição.",
     img: "/images/armazem.webp",
-    span: "sm:col-span-1 lg:col-span-1",
-    imgClass: "h-44 lg:h-auto lg:flex-1 lg:min-h-[140px]",
   },
   {
     icon: Siren,
     title: "Emergencial",
     service: "Emergencial",
-    desc: "Transporte urgente com veículo exclusivo, garantindo prioridade máxima e rapidez na entrega.",
+    desc: "Transporte urgente com veículo exclusivo para demandas que exigem prioridade, com foco em agilidade da coleta até a entrega.",
     img: "/images/emergencial.webp",
-    span: "sm:col-span-2 lg:col-span-4",
-    banner: true,
   },
 ];
 
@@ -63,10 +50,10 @@ function QuoteButton({ service, revealOnHover = true, className = "" }) {
 
   return (
     <a
-      href="#contato"
+      href={conventionalService(service) ? "#contato" : serviceEmail(service)}
       onClick={() => requestQuote(service)}
       aria-label={`Solicitar cotação de transporte ${service}`}
-      className={`inline-flex items-center gap-1.5 lg:gap-2 shrink-0 bg-brand-blue-light text-white text-[10px] md:text-xs font-semibold uppercase tracking-widest px-3 py-1.5 lg:px-6 lg:py-3 rounded-md shadow-lg hover:bg-brand-blue transition-all duration-300 ${reveal} ${className}`}
+      className={`inline-flex items-center gap-1.5 lg:gap-2 shrink-0 bg-brand-blue-light text-white text-[10px] md:text-xs font-semibold uppercase tracking-widest px-3 py-1.5 lg:px-6 lg:py-3 rounded-md shadow-lg hover:bg-brand-orange transition-all duration-300 ${reveal} ${className}`}
     >
       Solicitar
       <ArrowUpRight size={12} className="lg:hidden" />
@@ -77,7 +64,7 @@ function QuoteButton({ service, revealOnHover = true, className = "" }) {
 
 export default function Solutions() {
   return (
-    <section id="solucoes" className="relative bg-white pb-10">
+    <section id="solucoes" className="relative bg-white pb-24 md:pb-32">
       <Reveal direction="none" className="w-full h-[38vh] md:h-[50vh] relative mb-14 md:mb-20">
         <img
           src="/images/rodovia.webp"
@@ -90,88 +77,41 @@ export default function Solutions() {
         <div className="absolute inset-x-0 bottom-0 h-20 md:h-28 bg-gradient-to-t from-white to-transparent" />
       </Reveal>
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 -mt-24">
-        <div className="max-w-7xl mx-auto w-full relative z-20 mb-14 md:mb-20">
-          <Reveal>
-            <h2 className="font-display text-4xl md:text-6xl lg:text-7xl leading-none font-bold tracking-tight text-brand-blue-light">
-              Soluções que conectam o <span className="text-brand-orange">Brasil</span>
+      <div className="page-container -mt-24">
+        <div className="w-full relative z-20 mb-14 md:mb-20">
+          <Reveal className="process-heading-row">
+            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl leading-[0.95] font-bold tracking-tight text-brand-blue-light">
+              Soluções que<br />conectam o <span className="text-brand-orange">Brasil</span>
             </h2>
+            <p className="process-heading-description lg:self-end">
+              Cada carga tem uma necessidade. Nossas soluções combinam <strong className="text-brand-blue-light">transporte</strong> rodoviário e aéreo, distribuição, logística reversa e atendimento emergencial. Escolha o serviço adequado ao seu prazo e à sua operação, com foco em <strong className="text-brand-orange">agilidade</strong> da coleta à entrega.
+            </p>
           </Reveal>
         </div>
 
-        {/* bento grid — rows size themselves to the content (no fixed row
-            height), so nothing gets cropped; the Rodoviário tile spans two
-            rows and stretches to fill them */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 auto-rows-fr gap-6 lg:gap-4 xl:gap-6">
           {solutions.map((s, i) => (
-            <Reveal key={s.title} delay={i * 0.08} className={s.span}>
-              {s.banner ? (
-                <div className="group relative overflow-hidden rounded-2xl h-full flex items-center">
+            <Reveal key={s.title} delay={i * 0.08} className="h-full min-w-0">
+              <article className="solution-card group overflow-hidden rounded-md border-b-8 border-brand-blue-light h-full flex flex-col bg-[#f4f4f4]">
+                <div className="relative overflow-hidden aspect-[16/10] shrink-0">
                   <img
                     src={s.img}
                     alt={s.title}
                     className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
                     loading="lazy"
+                    decoding="async"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-r from-brand-orange/95 via-brand-orange/80 to-brand-navy-deep/70" />
-                  <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-6 w-full p-7 md:p-10">
-                    <div className="flex items-start sm:items-center gap-5">
-                      <div className="w-12 h-12 md:w-14 md:h-14 shrink-0 rounded-full bg-white/15 border border-white/30 flex items-center justify-center backdrop-blur-sm">
-                        <s.icon size={24} className="text-white" />
-                      </div>
-                      <div>
-                        <h3 className="font-display text-2xl md:text-3xl font-bold tracking-tight text-white mb-1.5">
-                          {s.title}
-                        </h3>
-                        <p className="text-sm md:text-base text-white leading-relaxed max-w-xl">
-                          {s.desc}
-                        </p>
-                      </div>
-                    </div>
-                    <QuoteButton
-                      service={s.service}
-                      revealOnHover={false}
-                      className="self-start sm:self-center"
-                    />
+                  <div className="absolute inset-0 bg-brand-navy-deep/40 group-hover:bg-brand-navy-deep/20 transition-colors" />
+                  <div className="absolute top-4 left-4 w-11 h-11 rounded-md bg-brand-orange flex items-center justify-center">
+                    <s.icon size={20} className="text-white" aria-hidden="true" />
                   </div>
                 </div>
-              ) : (
-                <div className="group relative overflow-hidden shadow-xl rounded-2xl border-b-8 border-brand-blue-light h-full flex flex-col">
-                  <div className={`relative overflow-hidden ${s.imgClass}`}>
-                    {/* absolute so the image's intrinsic aspect ratio never
-                        dictates the grid row height — it only ever fills the
-                        box the layout gives it */}
-                    <img
-                      src={s.img}
-                      alt={s.title}
-                      className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-brand-navy-deep/40 group-hover:bg-brand-navy-deep/20 transition-colors" />
-                    <div className="absolute top-4 left-4 w-11 h-11 rounded-full bg-brand-orange flex items-center justify-center">
-                      <s.icon size={20} className="text-white" />
-                    </div>
-                    {/* no mobile o botão fica na mesma linha do chip do
-                        ícone (chip: top-4 + 44px de altura → centro em 38px);
-                        no desktop volta para o canto inferior, revelado no
-                        hover. O posicionamento fica no wrapper para não
-                        brigar com o translate da animação de reveal. */}
-                    <div className="absolute right-4 top-[38px] -translate-y-1/2 lg:top-auto lg:bottom-4 lg:translate-y-0 z-10">
-                      <QuoteButton service={s.service} />
-                    </div>
-                  </div>
-                  <div className="p-6 bg-brand-offwhite shrink-0">
-                    <h3
-                      className={`font-display font-semibold tracking-tight text-brand-navy mb-2 ${
-                        s.hero ? "text-2xl md:text-3xl" : "text-xl"
-                      }`}
-                    >
-                      {s.title}
-                    </h3>
-                    <p className="text-sm text-neutral-500 leading-relaxed">{s.desc}</p>
-                  </div>
+                <div className="p-6 lg:p-4 xl:p-6 flex flex-col flex-1 items-start">
+                  <h3 className="font-display text-2xl lg:text-xl font-semibold tracking-tight text-brand-navy mb-3">{s.title}</h3>
+                  <p className="text-base lg:text-sm text-neutral-600 leading-relaxed mb-6">{s.desc}</p>
+                  <QuoteButton service={s.service} revealOnHover={false} className="mt-auto min-h-11 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-blue-light" />
                 </div>
-              )}
+              </article>
             </Reveal>
           ))}
         </div>

@@ -27,3 +27,18 @@ dist-ssr
 .env
 .env.local
 .env.*.local
+
+# Ferramentas locais e resultados de inspeção visual
+/.agents/
+/.taste-skill/
+/tmp/
+
+# Assets intermediários e arquivos retirados da página
+/assets-originais/generated/
+/assets-originais/retirados-do-site/
+
+# Capturas e anotações locais das revisões de design
+/docs/*-preview.jpg
+/docs/analise-redesign.md
+/docs/redesign-*.md
+/docs/refinamento-*.md

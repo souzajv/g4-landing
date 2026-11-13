@@ -89,7 +89,7 @@ export default function ClientsMarquee() {
         opacity={0.28}
         className="left-0 bottom-[50%] w-full h-40 hidden lg:block"
       />
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 mb-12 relative">
+      <div className="page-container mb-12 relative">
         <Reveal>
           <h2 className="text-center font-display text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-brand-blue-light leading-[0.95] mb-10 md:mb-0">
             Empresas que confiam no nosso <span className="text-brand-orange">trabalho</span>
