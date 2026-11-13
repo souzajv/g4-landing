@@ -89,11 +89,11 @@ export default function Solutions() {
           </Reveal>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 auto-rows-fr gap-6 lg:gap-4 xl:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 auto-rows-auto md:auto-rows-fr gap-4 md:gap-6 lg:gap-4 xl:gap-6">
           {solutions.map((s, i) => (
             <Reveal key={s.title} delay={i * 0.08} className="h-full min-w-0">
               <article className="solution-card group overflow-hidden rounded-md border-b-8 border-brand-blue-light h-full flex flex-col bg-[#f4f4f4]">
-                <div className="relative overflow-hidden aspect-[16/10] shrink-0">
+                <div className="relative overflow-hidden h-36 md:h-auto md:aspect-[16/10] shrink-0">
                   <img
                     src={s.img}
                     alt={s.title}
@@ -102,14 +102,14 @@ export default function Solutions() {
                     decoding="async"
                   />
                   <div className="absolute inset-0 bg-brand-navy-deep/40 group-hover:bg-brand-navy-deep/20 transition-colors" />
-                  <div className="absolute top-4 left-4 w-11 h-11 rounded-md bg-brand-orange flex items-center justify-center">
+                  <div className="absolute top-3 left-3 w-9 h-9 md:top-4 md:left-4 md:w-11 md:h-11 rounded-md bg-brand-orange flex items-center justify-center">
                     <s.icon size={20} className="text-white" aria-hidden="true" />
                   </div>
                 </div>
-                <div className="p-6 lg:p-4 xl:p-6 flex flex-col flex-1 items-start">
-                  <h3 className="font-display text-2xl lg:text-xl font-semibold tracking-tight text-brand-navy mb-3">{s.title}</h3>
-                  <p className="text-base lg:text-sm text-neutral-600 leading-relaxed mb-6">{s.desc}</p>
-                  <QuoteButton service={s.service} revealOnHover={false} className="mt-auto min-h-11 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-blue-light" />
+                <div className="p-4 md:p-6 lg:p-4 xl:p-6 flex flex-col flex-1 items-start">
+                  <h3 className="font-display text-xl md:text-2xl lg:text-xl font-semibold tracking-tight text-brand-navy mb-2 md:mb-3">{s.title}</h3>
+                  <p className="text-sm md:text-base lg:text-sm text-neutral-600 leading-relaxed mb-4 md:mb-6">{s.desc}</p>
+                  <QuoteButton service={s.service} revealOnHover={false} className="mt-auto self-end md:self-start min-h-11 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-blue-light" />
                 </div>
               </article>
             </Reveal>

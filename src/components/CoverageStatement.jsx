@@ -3,7 +3,7 @@ import FlightRoute from "./FlightRoute";
 
 export default function CoverageStatement() {
   return (
-    <section className="relative pt-16 md:pt-40 pb-20 bg-brand-offwhite">
+    <section className="relative pt-16 md:pt-40 pb-8 md:pb-20 bg-brand-offwhite">
       <FlightRoute className="pointer-events-none" />
 
       <div className="page-container relative z-10">

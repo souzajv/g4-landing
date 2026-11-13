@@ -100,7 +100,7 @@ export default function WhyUs() {
         </Reveal>
       </div>
 
-      <div className="page-container pt-0 py-32 relative">
+      <div className="page-container pt-0 pb-8 md:pb-32 relative">
         <div className="relative space-y-10">
           <RouteTrack />
           {items.map((item, i) => {

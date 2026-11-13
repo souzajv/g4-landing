@@ -39,8 +39,8 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? "bg-brand-navy-deep/40 backdrop-blur-sm shadow-lg" : "bg-transparent"
-        } ${hidden ? "-translate-y-full" : "translate-y-0"}`}
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${open ? "bg-brand-navy-deep" : scrolled ? "bg-brand-navy-deep/40 backdrop-blur-sm shadow-lg" : "bg-transparent"
+        } ${hidden && !open ? "-translate-y-full" : "translate-y-0"}`}
     >
       <div className="page-container py-2 flex justify-between items-center">
         <a href="#inicio" className="flex flex-col leading-none">
@@ -65,7 +65,7 @@ export default function Navbar() {
           <PackageSearch size={18} />
         </a>
 
-        <button className="md:hidden text-white" onClick={() => setOpen((o) => !o)} aria-label="Abrir menu">
+        <button className="md:hidden text-white" onClick={() => setOpen((o) => !o)} aria-label={open ? "Fechar menu" : "Abrir menu"} aria-expanded={open} aria-controls="mobile-menu">
           {open ? <X size={26} /> : <Menu size={26} />}
         </button>
       </div>
@@ -76,11 +76,11 @@ export default function Navbar() {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            className="md:hidden bg-brand-navy-deep/98 backdrop-blur overflow-hidden"
+            id="mobile-menu" className="md:hidden bg-brand-navy-deep overflow-hidden"
           >
-            <div className="flex flex-col px-6 py-6 gap-5 text-white/90 tracking-widest text-sm font-medium">
-              {links.map((l) => (
-                <a key={l.href} href={l.href} onClick={() => setOpen(false)}>
+            <div className="flex flex-col px-6 pt-1 pb-6 text-right text-white/90 tracking-widest text-sm font-medium">
+              {links.map((l, index) => (
+                <a key={l.href} href={l.href} onClick={() => setOpen(false)} className={`py-4 ${index < links.length - 1 ? "border-b border-white/15" : ""}`}>
                   {l.label}
                 </a>
               ))}
@@ -89,7 +89,7 @@ export default function Navbar() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setOpen(false)}
-                className="flex items-center justify-center gap-2 bg-brand-orange text-white py-3 rounded-md mt-2"
+                className="flex items-center justify-center gap-2 bg-brand-orange text-white py-3 rounded-md mt-4"
               >
                 <PackageSearch size={16} />
                 Rastreie sua encomenda
