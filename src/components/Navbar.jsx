@@ -87,7 +87,7 @@ export default function Navbar() {
                   {l.label}
                 </a>
               ))}
-              <a href="#contato" onClick={() => setOpen(false)} className="flex items-center justify-center gap-2 bg-brand-blue-light text-white py-3 rounded-md mt-4 hover:bg-brand-orange transition-colors">Solicitar cotação<ArrowRight size={18} aria-hidden="true" /></a>
+              <a href="#contato" onClick={() => setOpen(false)} className="flex items-center justify-center gap-2 bg-brand-blue-light text-white py-3 rounded-md mt-4 hover:bg-brand-orange transition-colors"><ArrowRight size={16} aria-hidden="true" />Solicitar cotação</a>
               <a
                 href={TRACKING_URL}
                 target="_blank"
