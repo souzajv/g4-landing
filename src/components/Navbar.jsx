@@ -47,7 +47,7 @@ export default function Navbar() {
           <img src="/logo-g4-express.webp" alt="G4 Express" className="h-12 w-auto" />
         </a>
 
-        <div className="hidden md:flex items-center gap-8 text-sm tracking-widest font-medium text-white">
+        <div className="hidden xl:flex items-center gap-5 text-sm tracking-widest font-medium text-white">
           {links.map((l) => (
             <a key={l.href} href={l.href} className="hover:text-brand-orange transition-colors">
               {l.label}
@@ -55,19 +55,22 @@ export default function Navbar() {
           ))}
         </div>
 
+        <div className="flex items-center gap-3">
+          <a href="#contato" onClick={() => setOpen(false)} aria-label="Solicitar cotação" className="inline-flex items-center justify-center min-h-11 px-3 xl:px-4 rounded-md bg-brand-blue-light text-white text-xs font-semibold uppercase tracking-wide hover:bg-brand-orange transition-colors"><span className="xl:hidden">Cotação</span><span className="hidden xl:inline">Solicitar cotação</span></a>
         <a
           href={TRACKING_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="hidden md:flex items-center gap-2 bg-brand-orange text-white text-xs font-semibold uppercase tracking-widest px-6 py-3 rounded-md hover:bg-brand-orange-dark transition-colors"
+          className="hidden xl:flex items-center gap-2 bg-brand-orange text-white text-xs font-semibold uppercase tracking-widest px-6 py-3 rounded-md hover:bg-brand-orange-dark transition-colors"
         >
           Rastrear
           <PackageSearch size={18} />
         </a>
 
-        <button className="md:hidden text-white" onClick={() => setOpen((o) => !o)} aria-label={open ? "Fechar menu" : "Abrir menu"} aria-expanded={open} aria-controls="mobile-menu">
+        <button className="xl:hidden text-white" onClick={() => setOpen((o) => !o)} aria-label={open ? "Fechar menu" : "Abrir menu"} aria-expanded={open} aria-controls="mobile-menu">
           {open ? <X size={26} /> : <Menu size={26} />}
         </button>
+        </div>
       </div>
 
       <AnimatePresence>
@@ -76,7 +79,7 @@ export default function Navbar() {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            id="mobile-menu" className="md:hidden bg-brand-navy-deep overflow-hidden"
+            id="mobile-menu" className="xl:hidden bg-brand-navy-deep overflow-hidden"
           >
             <div className="flex flex-col px-6 pt-1 pb-6 text-right text-white/90 tracking-widest text-sm font-medium">
               {links.map((l, index) => (
@@ -84,6 +87,7 @@ export default function Navbar() {
                   {l.label}
                 </a>
               ))}
+              <a href="#contato" onClick={() => setOpen(false)} className="flex items-center justify-center bg-brand-blue-light text-white py-3 rounded-md mt-4 hover:bg-brand-orange transition-colors">Solicitar cotação</a>
               <a
                 href={TRACKING_URL}
                 target="_blank"

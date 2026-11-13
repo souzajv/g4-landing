@@ -1,6 +1,5 @@
 import Reveal from "./Reveal";
 import "./ProcessTimeline.css";
-import { requestQuote, conventionalService, serviceEmail } from "../lib/quote";
 import { Truck, Plane, RotateCcw, Boxes, Siren, ArrowUpRight } from "lucide-react";
 
 const solutions = [
@@ -50,8 +49,8 @@ function QuoteButton({ service, revealOnHover = true, className = "" }) {
 
   return (
     <a
-      href={conventionalService(service) ? "#contato" : serviceEmail(service)}
-      onClick={() => requestQuote(service)}
+      href="#contato"
+
       aria-label={`Solicitar cotação de transporte ${service}`}
       className={`inline-flex items-center gap-1.5 lg:gap-2 shrink-0 bg-brand-blue-light text-white text-[10px] md:text-xs font-semibold uppercase tracking-widest px-3 py-1.5 lg:px-6 lg:py-3 rounded-md shadow-lg hover:bg-brand-orange transition-all duration-300 ${reveal} ${className}`}
     >
