@@ -1,6 +1,6 @@
 # Cotação
 
-No celular (abaixo de 768 px), o formulário tem três etapas: Contato, Transporte e pagamento, Dados da carga. Os campos permanecem montados para preservar os dados entre etapas. No desktop todos ficam visíveis. O envio verifica os campos obrigatórios, serviço permitido e token CAPTCHA.
+No celular (abaixo de 768 px), o formulário tem três etapas: Contato, Transporte e pagamento, Dados da carga. Os campos permanecem montados para preservar os dados entre etapas. No desktop há duas etapas: Contato e transporte, Carga e confirmação. O CAPTCHA aparece na etapa final, em formato horizontal, com versão compacta em telas abaixo de 380 px. O envio verifica os campos obrigatórios, serviço permitido e token CAPTCHA.
 
 O formulário aceita somente Rodoviário Convencional e Aéreo Convencional. Os botões dos outros serviços abrem uma solicitação por e-mail, sem selecionar uma modalidade incorreta. Pagador do frete identifica pelo nome ou razão social quem pagará o transporte. As medidas seguem comprimento, largura e altura em centímetros.
 

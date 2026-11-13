@@ -8,7 +8,7 @@ export default function Hero() {
     <section id="inicio" className="relative min-h-screen flex items-end overflow-hidden bg-[#000a1f]">
       <HeroVideo
         src="/video/g4-na-estrada.mp4"
-        poster="/images/hero-poster.webp"
+        poster="/images/g4-na-estrada-poster.webp"
         className="absolute inset-0 w-full h-full object-cover"
       />
       <div className="absolute inset-0 bg-gradient-to-b from-[#000a1f]/70 via-[#000a1f]/10 to-transparent" />

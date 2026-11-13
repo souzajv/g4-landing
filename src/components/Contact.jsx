@@ -47,6 +47,19 @@ const infoItems = [
 const WHATSAPP_URL = "https://wa.me/551134324744";
 
 export default function Contact() {
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768);
+  const [compactCaptcha, setCompactCaptcha] = useState(() => window.innerWidth < 380);
+  useEffect(() => {
+    const update = () => {
+      const small = window.innerWidth < 768;
+      setIsMobile(small);
+      setCompactCaptcha(window.innerWidth < 380);
+      setStep(current => !small && current === 1 ? 0 : current);
+      setCaptchaToken("");
+    };
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
   const [step, setStep] = useState(0);
   const formRef = useRef(null);
   const stepRef = useRef(null);
@@ -84,7 +97,9 @@ export default function Contact() {
     return () => clearTimeout(t);
   }, [pulse]);
 
-  const mobile = () => window.matchMedia("(max-width: 767px)").matches;
+  const titles = isMobile ? stepTitles : ["Contato e transporte", "Carga e confirmação"];
+  const displayStep = isMobile ? step : step === 2 ? 1 : 0;
+  const visibleStep = (index) => isMobile ? step === index : (step === 2 ? index === 2 : index < 2);
   const goToStep = (next) => {
     setStep(next);
     requestAnimationFrame(() => {
@@ -93,12 +108,12 @@ export default function Contact() {
     });
   };
   const validate = (all = false) => {
-    const fields = formRef.current.querySelectorAll(all ? "input, select, textarea" : '[data-step="' + step + '"] input, [data-step="' + step + '"] select, [data-step="' + step + '"] textarea');
+    const fields = [...formRef.current.querySelectorAll("fieldset input, fieldset select, fieldset textarea")].filter(field => all || visibleStep(Number(field.closest("fieldset").dataset.step)));
     for (const field of fields) {
       if (!field.checkValidity()) {
         const target = Number(field.closest("[data-step]")?.dataset.step || 0);
-        if (mobile() && target !== step) {
-          setStep(target);
+        if (!visibleStep(target)) {
+          setStep(isMobile ? target : target === 2 ? 2 : 0);
           requestAnimationFrame(() => field.reportValidity());
         } else field.reportValidity();
         return false;
@@ -111,8 +126,8 @@ export default function Contact() {
     e.preventDefault();
     const form = e.currentTarget;
     if (sending) return;
-    if (mobile() && step < 2) {
-      if (validate()) goToStep(step + 1);
+    if (step < 2) {
+      if (validate()) goToStep(isMobile ? step + 1 : 2);
       return;
     }
     if (!validate(true)) return;
@@ -153,7 +168,7 @@ export default function Contact() {
               {/* form card — the wider column, since it carries every field
                   from the G4 quote form and needs the horizontal room */}
               <Reveal className="lg:col-span-7 w-full">
-                <div className="rounded-md bg-white/95 backdrop-blur ring-1 ring-white/20 shadow-2xl shadow-black/20 p-6 sm:p-8">
+                <div className="rounded-md bg-white/95 backdrop-blur ring-1 ring-white/20 shadow-2xl shadow-black/20 p-4 sm:p-8">
                   {sent ? (
                     <div className="min-h-[420px] flex flex-col items-center justify-center text-center gap-4">
                       <div className="w-16 h-16 rounded-md bg-brand-orange/15 flex items-center justify-center">
@@ -184,11 +199,11 @@ export default function Contact() {
                       </div>
 
                       <form ref={formRef} className="mt-6" noValidate onSubmit={handleSubmit}>
-                        <div ref={stepRef} tabIndex={-1} className="md:hidden mb-6 scroll-mt-24 outline-none" aria-live="polite">
-                          <p className="text-sm font-semibold text-brand-blue-light">Etapa {step + 1} de 3: {stepTitles[step]}</p>
-                          <div className="mt-3 flex gap-2" aria-hidden="true">{stepTitles.map((title, i) => <span key={title} className={`h-1 flex-1 rounded-full ${i <= step ? "bg-brand-orange" : "bg-neutral-200"}`} />)}</div>
+                        <div ref={stepRef} tabIndex={-1} className="mb-6 scroll-mt-24 outline-none" aria-live="polite">
+                          <p className="text-sm font-semibold text-brand-blue-light">Etapa {displayStep + 1} de {titles.length}: {titles[displayStep]}</p>
+                          <div className="mt-3 flex gap-2" aria-hidden="true">{titles.map((title, i) => <span key={title} className={`h-1 flex-1 rounded-full ${i <= displayStep ? "bg-brand-orange" : "bg-neutral-200"}`} />)}</div>
                         </div>
-                        <fieldset data-step="0" className={`border-0 p-0 m-0 min-w-0 grid-cols-2 sm:grid-cols-12 gap-4 ${step === 0 ? "grid" : "hidden"} md:grid`}>
+                        <fieldset data-step="0" className={`border-0 p-0 m-0 min-w-0 grid-cols-2 sm:grid-cols-12 gap-4 ${visibleStep(0) ? "grid" : "hidden"}`}>
                           <legend className="sr-only">Contato</legend>
                           <Field
                             id="ct-nome"
@@ -240,7 +255,7 @@ export default function Contact() {
                           />
 
                         </fieldset>
-                        <fieldset data-step="1" className={`border-0 p-0 m-0 min-w-0 md:mt-4 grid-cols-2 sm:grid-cols-12 gap-4 ${step === 1 ? "grid" : "hidden"} md:grid`}>
+                        <fieldset data-step="1" className={`border-0 p-0 m-0 min-w-0 md:mt-4 grid-cols-2 sm:grid-cols-12 gap-4 ${visibleStep(1) ? "grid" : "hidden"}`}>
                           <legend className="sr-only">Transporte e pagamento</legend>
                           <Field
                             id="ct-origem"
@@ -291,7 +306,7 @@ export default function Contact() {
 
                           <Field id="ct-pagador" name="pagador_frete" label="Pagador do frete" placeholder="Nome ou razão social de quem pagará o frete" required span="col-span-2 sm:col-span-12" />
                         </fieldset>
-                        <fieldset data-step="2" className={`border-0 p-0 m-0 min-w-0 md:mt-4 grid-cols-2 sm:grid-cols-12 gap-4 ${step === 2 ? "grid" : "hidden"} md:grid`}>
+                        <fieldset data-step="2" className={`border-0 p-0 m-0 min-w-0 md:mt-4 grid-cols-2 sm:grid-cols-12 gap-4 ${visibleStep(2) ? "grid" : "hidden"}`}>
                           <legend className="sr-only">Dados da carga</legend>
                           <Field
                             id="ct-produto"
@@ -372,16 +387,16 @@ export default function Contact() {
                           aria-hidden="true"
                         />
 
-                        <div className={`mt-6 ${step === 2 ? "block" : "hidden"} md:block`}>
+                        <div className={`mt-6 py-5 border-t border-neutral-200 flex-col items-center text-center ${step === 2 ? "flex" : "hidden"}`}>
                           <p className="text-sm font-medium text-brand-navy mb-3">Confirme que você é uma pessoa</p>
                           {!captchaLoaded && !captchaError && <p role="status" className="text-sm text-neutral-600 mb-3">Carregando verificação de segurança...</p>}
                           <HCaptcha
-                            key={captchaAttempt}
+                            key={`${captchaAttempt}-${compactCaptcha}`}
                             ref={captchaRef}
                             sitekey="50b2fe65-b00b-4b9e-ad62-3ba471098be2"
                             reCaptchaCompat={false}
                             languageOverride="pt"
-                            size="compact"
+                            size={compactCaptcha ? "compact" : "normal"}
                             onLoad={() => setCaptchaLoaded(true)}
                             onVerify={(token) => { setCaptchaToken(token); setCaptchaError(""); }}
                             onExpire={() => { setCaptchaToken(""); setCaptchaError("A verificação expirou. Confirme novamente para enviar."); }}
@@ -393,13 +408,13 @@ export default function Contact() {
                           </div>}
                         </div>
                         <div className="mt-6 flex gap-3">
-                        {step > 0 && <button type="button" disabled={sending} onClick={() => goToStep(step - 1)} className="md:hidden px-4 py-3 rounded-md text-brand-blue-light ring-1 ring-brand-blue-light disabled:opacity-50">Voltar</button>}
+                        {step > 0 && <button type="button" disabled={sending} onClick={() => goToStep(isMobile ? step - 1 : 0)} className="px-4 py-3 rounded-md text-brand-blue-light ring-1 ring-brand-blue-light disabled:opacity-50">Voltar</button>}
                         <button
                           type="submit"
                           disabled={sending}
                           className="w-full inline-flex items-center justify-center gap-2 rounded-md bg-brand-orange text-white px-4 py-3.5 text-sm font-semibold uppercase tracking-widest hover:bg-brand-orange-dark transition-colors disabled:opacity-70 disabled:cursor-not-allowed"
                         >
-                          {sending ? "Enviando..." : <><span className="md:hidden">{step < 2 ? "Continuar" : "Solicitar cotação"}</span><span className="hidden md:inline">Solicitar cotação</span></>}
+                          {sending ? "Enviando..." : (step < 2 ? "Continuar" : "Solicitar cotação")}
                           {!sending && <ArrowRight size={16} />}
                         </button>
 
