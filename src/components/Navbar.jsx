@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, PackageSearch } from "lucide-react";
+import { Menu, X, PackageSearch, ArrowRight } from "lucide-react";
 import { TRACKING_URL } from "../lib/links";
 
 const links = [
@@ -56,7 +56,7 @@ export default function Navbar() {
         </div>
 
         <div className="flex items-center gap-3">
-          <a href="#contato" onClick={() => setOpen(false)} aria-label="Solicitar cotação" className="inline-flex items-center justify-center min-h-11 px-3 xl:px-4 rounded-md bg-brand-blue-light text-white text-xs font-semibold uppercase tracking-wide hover:bg-brand-orange transition-colors"><span className="xl:hidden">Cotação</span><span className="hidden xl:inline">Solicitar cotação</span></a>
+          <a href="#contato" onClick={() => setOpen(false)} aria-label="Solicitar cotação" className="hidden xl:inline-flex items-center justify-center gap-2 min-h-11 px-3 xl:px-4 rounded-md bg-brand-blue-light text-white text-xs font-semibold uppercase tracking-wide hover:bg-brand-orange transition-colors">Solicitar cotação<ArrowRight size={18} aria-hidden="true" /></a>
         <a
           href={TRACKING_URL}
           target="_blank"
@@ -87,7 +87,7 @@ export default function Navbar() {
                   {l.label}
                 </a>
               ))}
-              <a href="#contato" onClick={() => setOpen(false)} className="flex items-center justify-center bg-brand-blue-light text-white py-3 rounded-md mt-4 hover:bg-brand-orange transition-colors">Solicitar cotação</a>
+              <a href="#contato" onClick={() => setOpen(false)} className="flex items-center justify-center gap-2 bg-brand-blue-light text-white py-3 rounded-md mt-4 hover:bg-brand-orange transition-colors">Solicitar cotação<ArrowRight size={18} aria-hidden="true" /></a>
               <a
                 href={TRACKING_URL}
                 target="_blank"
