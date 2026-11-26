@@ -42,12 +42,12 @@ export default function Navbar() {
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${open ? "bg-brand-navy-deep" : scrolled ? "bg-brand-navy-deep/40 backdrop-blur-sm shadow-lg" : "bg-transparent"
         } ${hidden && !open ? "-translate-y-full" : "translate-y-0"}`}
     >
-      <div className="page-container py-2 flex justify-between items-center">
-        <a href="#inicio" className="flex flex-col leading-none">
-          <img src="/logo-g4-express.webp" alt="G4 Express" className="h-12 w-auto" />
+      <div className="page-container py-2 flex justify-between items-center xl:grid xl:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] xl:gap-4">
+        <a href="#inicio" className="flex flex-col leading-none justify-self-start">
+          <img src="/logo-g4-nova.webp" alt="G4 Express" className="h-12 w-auto" />
         </a>
 
-        <div className="hidden xl:flex items-center gap-5 text-sm tracking-widest font-medium text-white">
+        <div className="hidden xl:flex items-center gap-4 2xl:gap-5 text-xs 2xl:text-sm tracking-wide 2xl:tracking-widest whitespace-nowrap font-medium text-white">
           {links.map((l) => (
             <a key={l.href} href={l.href} className="hover:text-brand-orange transition-colors">
               {l.label}
@@ -55,13 +55,13 @@ export default function Navbar() {
           ))}
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 justify-self-end whitespace-nowrap">
           <a href="#contato" onClick={() => setOpen(false)} aria-label="Solicitar cotação" className="hidden xl:inline-flex items-center justify-center gap-2 min-h-11 px-3 xl:px-4 rounded-md bg-brand-blue-light text-white text-xs font-semibold uppercase tracking-wide hover:bg-brand-orange transition-colors">Solicitar cotação<ArrowRight size={18} aria-hidden="true" /></a>
         <a
           href={TRACKING_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="hidden xl:flex items-center gap-2 bg-brand-orange text-white text-xs font-semibold uppercase tracking-widest px-6 py-3 rounded-md hover:bg-brand-orange-dark transition-colors"
+          className="hidden xl:flex items-center gap-2 bg-brand-orange text-white text-xs font-semibold uppercase tracking-widest px-3 2xl:px-6 py-3 rounded-md hover:bg-brand-orange-dark transition-colors"
         >
           Rastrear
           <PackageSearch size={18} />

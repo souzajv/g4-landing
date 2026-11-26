@@ -22,7 +22,7 @@ export default function Footer() {
       <div className="page-container grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
         <div className="col-span-1 md:col-span-2">
           <a href="#inicio" aria-label="Voltar ao início">
-            <img src="/logo-g4-express.webp" alt="G4 Express" className="h-16 w-auto mb-5" />
+            <img src="/logo-g4-nova.webp" alt="G4 Express" className="h-16 w-auto mb-5" />
           </a>
           <p className="text-sm text-white/40 max-w-sm leading-relaxed mb-4">
             Fundada em 2010, na Zona Norte de São Paulo. Soluções logísticas integradas com
